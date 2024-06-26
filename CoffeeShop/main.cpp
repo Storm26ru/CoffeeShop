@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-enum CoffeeType
+enum class CoffeeType
 {
 	ESPRESSO,
 	AMERICANO,
@@ -11,22 +11,23 @@ enum CoffeeType
 class Coffee
 {
 public:
-	virtual void grindCoffee() = 0;
-	virtual	void makeCoffee() = 0;
-	virtual	void pourInCup() = 0;
+	virtual void grindCoffee()const = 0;
+	virtual	void makeCoffee()const = 0;
+	virtual	void pourInCup()const = 0;
+	virtual ~Coffee(){}
 };
 class Americano :public Coffee
 {
 public:
-	void grindCoffee()
+	void grindCoffee()const override
 	{
 		cout << "GrindCoffee" << endl;
 	}
-	void makeCoffee()
+	void makeCoffee()const override
 	{
 		cout << "MakeCoffee" << endl;
 	}
-	void pourInCup()
+	void pourInCup()const override
 	{
 		cout << "PourInCup" << endl;
 	}
@@ -34,15 +35,15 @@ public:
 class Capuccino :public Coffee
 {
 public:
-	void grindCoffee()
+	void grindCoffee()const override
 	{
 		cout << "GrindCoffee" << endl;
 	}
-	void makeCoffee()
+	void makeCoffee()const override
 	{
 		cout << "MakeCoffee" << endl;
 	}
-	void pourInCup()
+	void pourInCup()const override
 	{
 		cout << "PourInCup" << endl;
 	}
@@ -50,15 +51,15 @@ public:
 class CaffeLatte :public Coffee
 {
 public:
-	void grindCoffee()
+	void grindCoffee()const override
 	{
 		cout << "GrindCoffee" << endl;
 	}
-	void makeCoffee()
+	void makeCoffee()const override
 	{
 		cout << "MakeCoffee" << endl;
 	}
-	void pourInCup()
+	void pourInCup()const override
 	{
 		cout << "PourInCup" << endl;
 	}
@@ -66,61 +67,66 @@ public:
 class Espresso :public Coffee
 {
 public:
-	void grindCoffee()
+	void grindCoffee()const override
 	{
 		cout << "GrindCoffee" << endl;
 	}
-	void makeCoffee()
+	void makeCoffee()const override
 	{
 		cout << "MakeCoffee" << endl;
 	}
-	void pourInCup()
+	void pourInCup()const override
 	{
 		cout << "PourInCup" << endl;
 	}
 };
 
-class CoffeeFactory
+class CoffeeShop
 {
 public:
-	Coffee* createCoffee(CoffeeType type)
-	{
-		Coffee* coffee = nullptr;
-		switch (type)
-		{
-		case CAPPUCCINO:
-			coffee = new Capuccino(); break;
-		case AMERICANO:
-			coffee = new Americano(); break;
-		case ESPRESSO:
-			coffee = new Espresso(); break;
-		case CAFFE_LATTE:
-			coffee = new CaffeLatte(); 
-		}
-		return coffee;
 
-	}
-};
-class coffeeShop
-{
-	CoffeeFactory coffefactory;
-public:
-	coffeeShop(CoffeeFactory coffefactory) : coffefactory(coffefactory) {}
-	Coffee *ordercoffee(CoffeeType type)
+	virtual Coffee* CreateCoffee(CoffeeType type)const= 0;
+	void ordercoffee(CoffeeType type)
 	{
-		Coffee* coffee = coffefactory.createCoffee(type);
+		Coffee* coffee = CreateCoffee(type);
 		coffee->grindCoffee();
 		coffee->makeCoffee();
 		coffee->pourInCup();
 		cout << "Вот ваш кофе! Спасибо, приходите еще! " << endl;
+		delete coffee;
+	}
+	virtual ~CoffeeShop() {};
+};
+class AmericanCofeeShop : public CoffeeShop
+{
+public:
+	Coffee* CreateCoffee(CoffeeType type)const override
+	{
+		Coffee* coffee = nullptr;
+		switch (type)
+		{
+		case CoffeeType:: CAPPUCCINO:
+			coffee = new Capuccino(); break;
+		case CoffeeType::AMERICANO:
+			coffee = new Americano(); break;
+		case CoffeeType::ESPRESSO:
+			coffee = new Espresso(); break;
+		case CoffeeType::CAFFE_LATTE:
+			coffee = new CaffeLatte();
+		}
 		return coffee;
 	}
 };
 
+
+
+
 void main()
 {
 	setlocale(LC_ALL, "");
-	Coffee *A;
-	A = new Americano();
-	A->grindCoffee();
+	CoffeeShop* american = new AmericanCofeeShop();
+	american->ordercoffee(CoffeeType::ESPRESSO);
+	delete american;
+
+
 }
