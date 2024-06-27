@@ -1,5 +1,8 @@
+﻿//                       FACTORY METHOD C++
 #include<iostream>
 using namespace std;
+#define SEPARATOR "-------------------------------------------------------------------------------"
+
 
 enum class CoffeeType
 {
@@ -8,34 +11,34 @@ enum class CoffeeType
 	CAFFE_LATTE,
 	CAPPUCCINO
 };
-class Coffee
+class Coffee // Абстрактый продукт с общим интерфейсом.
 {
 public:
 	virtual void name()const = 0;
 	virtual void grindCoffee()const = 0;
 	virtual	void makeCoffee()const = 0;
 	virtual	void pourInCup()const = 0;
-	virtual ~Coffee(){}
+	virtual ~Coffee() {}
 };
-class AmericanStyleAmericano :public Coffee
+class AmericanStyleAmericano :public Coffee 
 {
 public:
 	void name()const override
 	{
-		cout << "Americano" << endl;
+		cout << "Заказ: Americano" << endl;
 
 	}
 	void grindCoffee()const override
 	{
-		cout << "GrindCoffee" << endl;
+		cout << "1.Grind Coffee" << endl;
 	}
 	void makeCoffee()const override
 	{
-		cout << "MakeCoffee" << endl;
+		cout << "2.Make Coffee" << endl;
 	}
 	void pourInCup()const override
 	{
-		cout << "PourInCup" << endl;
+		cout << "3.Pour a larger portion into the Cup + marshmallow" << endl;
 	}
 };
 class AmericanStyleCapuccino :public Coffee
@@ -43,20 +46,20 @@ class AmericanStyleCapuccino :public Coffee
 public:
 	void name()const override
 	{
-		cout << "Capuccino" << endl;
+		cout << "Заказ: Capuccino" << endl;
 
 	}
 	void grindCoffee()const override
 	{
-		cout << "GrindCoffee" << endl;
+		cout << "1.Grind Coffee" << endl;
 	}
 	void makeCoffee()const override
 	{
-		cout << "MakeCoffee" << endl;
+		cout << "2.Make Coffee" << endl;
 	}
 	void pourInCup()const override
 	{
-		cout << "PourInCup" << endl;
+		cout << "3.Pour a larger portion into the Cup + marshmallow" << endl;
 	}
 };
 class AmericanStyleCaffeLatte :public Coffee
@@ -64,20 +67,20 @@ class AmericanStyleCaffeLatte :public Coffee
 public:
 	void name()const override
 	{
-		cout << "Caffe Latte" << endl;
+		cout << "Заказ: Caffe Latte" << endl;
 
 	}
 	void grindCoffee()const override
 	{
-		cout << "GrindCoffee" << endl;
+		cout << "1.Grind Coffee" << endl;
 	}
 	void makeCoffee()const override
 	{
-		cout << "MakeCoffee" << endl;
+		cout << "2.Make Coffee" << endl;
 	}
 	void pourInCup()const override
 	{
-		cout << "PourInCup" << endl;
+		cout << "3.Pour a larger portion into the Cup + marshmallow" << endl;
 	}
 };
 class AmericanStyleEspresso :public Coffee
@@ -85,20 +88,20 @@ class AmericanStyleEspresso :public Coffee
 public:
 	void name()const override
 	{
-		cout << "Espresso" << endl;
+		cout << "Заказ: Espresso" << endl;
 
 	}
 	void grindCoffee()const override
 	{
-		cout << "GrindCoffee" << endl;
+		cout << "1.Grind Coffee" << endl;
 	}
 	void makeCoffee()const override
 	{
-		cout << "MakeCoffee" << endl;
+		cout << "2.Make Coffee" << endl;
 	}
 	void pourInCup()const override
 	{
-		cout << "PourInCup" << endl;
+		cout << "3.Pour a larger portion into the Cup + marshmallow" << endl;
 	}
 };
 class ItalianStyleAmericano :public Coffee
@@ -106,20 +109,20 @@ class ItalianStyleAmericano :public Coffee
 public:
 	void name()const override
 	{
-		cout << "Americano" << endl;
+		cout << "Заказ:Americano" << endl;
 
 	}
 	void grindCoffee()const override
 	{
-		cout << "GrindCoffee" << endl;
+		cout << "1.Italian Grind Coffee" << endl;
 	}
 	void makeCoffee()const override
 	{
-		cout << "MakeCoffee" << endl;
+		cout << "2.Make Coffee" << endl;
 	}
 	void pourInCup()const override
 	{
-		cout << "PourInCup" << endl;
+		cout << "3.Pour into a Cup" << endl;
 	}
 };
 class ItalianStyleCapuccino :public Coffee
@@ -127,20 +130,20 @@ class ItalianStyleCapuccino :public Coffee
 public:
 	void name()const override
 	{
-		cout << "Capuccino" << endl;
+		cout << "Заказ: Capuccino" << endl;
 
 	}
 	void grindCoffee()const override
 	{
-		cout << "GrindCoffee" << endl;
+		cout << "1.Italian Grind Coffee" << endl;
 	}
 	void makeCoffee()const override
 	{
-		cout << "MakeCoffee" << endl;
+		cout << "2.Make Coffee" << endl;
 	}
 	void pourInCup()const override
 	{
-		cout << "PourInCup" << endl;
+		cout << "3.Pour into a Cup" << endl;
 	}
 };
 class ItalianStyleCaffeLatte :public Coffee
@@ -148,20 +151,20 @@ class ItalianStyleCaffeLatte :public Coffee
 public:
 	void name()const override
 	{
-		cout << "Caffe Latte" << endl;
+		cout << "Заказ: Caffe Latte" << endl;
 
 	}
 	void grindCoffee()const override
 	{
-		cout << "GrindCoffee" << endl;
+		cout << "1.Italian Grind Coffee" << endl;
 	}
 	void makeCoffee()const override
 	{
-		cout << "MakeCoffee" << endl;
+		cout << "2.Make Coffee" << endl;
 	}
 	void pourInCup()const override
 	{
-		cout << "PourInCup" << endl;
+		cout << "3.Pour into a Cup" << endl;
 	}
 };
 class ItalianStyleEspresso :public Coffee
@@ -169,23 +172,23 @@ class ItalianStyleEspresso :public Coffee
 public:
 	void name()const override
 	{
-		cout << "Espresso" << endl;
+		cout << "Заказ: Espresso" << endl;
 
 	}
 	void grindCoffee()const override
 	{
-		cout << "GrindCoffee" << endl;
+		cout << "1.Italian Grind Coffee" << endl;
 	}
 	void makeCoffee()const override
 	{
-		cout << "MakeCoffee" << endl;
+		cout << "2.Make Coffee" << endl;
 	}
 	void pourInCup()const override
 	{
-		cout << "PourInCup" << endl;
+		cout << "3.Pour into a Cup" << endl;
 	}
 };
-class CoffeeShop
+class CoffeeShop // Абстрактная кофейня с фабричным методом.
 {
 public:
 	virtual Coffee* CreateCoffee(CoffeeType type)const= 0;
@@ -196,12 +199,15 @@ public:
 		coffee->grindCoffee();
 		coffee->makeCoffee();
 		coffee->pourInCup();
-		cout << "��� ��� ����! �������, ��������� ���! " << endl;
+		cout << "Вот ваш кофе! Спасибо, приходите еще! " << endl;
+		cout << SEPARATOR << endl;
 		delete coffee;
 	}
 	virtual ~CoffeeShop() {};
 };
-class AmericanCofeeShop : public CoffeeShop
+
+//В Американской кофейне порции будут больше и к каждому заказу будет подаваться плавленый зефир
+class AmericanCofeeShop : public CoffeeShop 
 {
 public:
 	
@@ -226,7 +232,8 @@ public:
 		return coffee;
 	}
 };
-class ItalianCofeeShop : public CoffeeShop
+// В итальянской кофейне будут использоваться только итальянские кофейные бренды с особым помолом и прожаркой.
+class ItalianCofeeShop : public CoffeeShop//
 {
 public:
 	ItalianCofeeShop()
@@ -257,7 +264,7 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	CoffeeShop* american = new AmericanCofeeShop();
-	american->ordercoffee(CoffeeType::ESPRESSO);
+	american->ordercoffee(CoffeeType::AMERICANO);
 	CoffeeShop* italian = new ItalianCofeeShop();
 	italian->ordercoffee(CoffeeType::CAFFE_LATTE);
 	delete italian;
